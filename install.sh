@@ -14,10 +14,10 @@ sudo fdisk -l | less
 
 
 i=0
-for device in $(sudo fdisk -l | grep "^Disk /dev" | awk "{print \$2}" | sed "s/://"); do
+for device in $(sudo fdisk -l | grep "^Disk /dev" | awk '{print $2}' | sed 's/://'); do
     echo "[$i] $device"
-    i=$((i+1))
     DEVICES[$i]=$device
+    i=$((i+1))
 done
 
 echo
