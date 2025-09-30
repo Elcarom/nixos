@@ -11,7 +11,7 @@ echo "Your attached storage devices will now be listed."
 read -p "Press 'q' to exit the list. Press enter to continue." NULL
 
 # Show the list of devices
-sudo fdisk -l | less
+sudo fdisk -l
 
 i=0
 for device in $(sudo fdisk -l | grep "^Disk /dev" | awk '{print $2}' | sed 's/://'); do
