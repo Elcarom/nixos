@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
   };
 
   outputs = { self, home-manager, nixpkgs, ... }@inputs:
@@ -35,16 +35,16 @@
         forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
-        your-host = nixpkgs.lib.nixosSystem {
+        vsvr-nos052 = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/your-host ];
+          modules = [ ./hosts/vsvr-nos052 ];
         };
       };
       homeConfigurations = {
-        "your-name@your-host" = home-manager.lib.homeManagerConfiguration {
+        "elcarom@vsvr-nos052" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/your-name/your-host.nix ];
+          modules = [ ./home/elcarom/vsvr-nos052.nix ];
         };
       };
     };
